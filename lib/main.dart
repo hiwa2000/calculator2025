@@ -8,7 +8,7 @@ class ColoredCalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Set this to false to remove the debug banner
+      debugShowCheckedModeBanner: false,
       home: CalculatorScreen(),
     );
   }
@@ -72,16 +72,20 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     });
   }
 
-  Widget buildButton(String buttonText) {
+  Widget buildButton(String buttonText, Color buttonColor) {
     return Expanded(
-      child: OutlinedButton(
-        style: OutlinedButton.styleFrom(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
           padding: EdgeInsets.all(24.0),
+          backgroundColor: buttonColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
         ),
         onPressed: () => buttonPressed(buttonText),
         child: Text(
           buttonText,
-          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
     );
@@ -90,7 +94,11 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Colored Calculator')),
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text('Colored Calculator'),
+        backgroundColor: Colors.blueGrey[900],
+      ),
       body: Column(
         children: <Widget>[
           Container(
@@ -98,50 +106,50 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
             child: Text(
               _output,
-              style: TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),
           Expanded(
-            child: Divider(),
+            child: Divider(color: Colors.grey),
           ),
           Column(
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  buildButton("7"),
-                  buildButton("8"),
-                  buildButton("9"),
-                  buildButton("/"),
+                  buildButton("7", Colors.blueAccent),
+                  buildButton("8", Colors.blueAccent),
+                  buildButton("9", Colors.blueAccent),
+                  buildButton("/", Colors.orangeAccent),
                 ],
               ),
               Row(
                 children: <Widget>[
-                  buildButton("4"),
-                  buildButton("5"),
-                  buildButton("6"),
-                  buildButton("*"),
+                  buildButton("4", Colors.blueAccent),
+                  buildButton("5", Colors.blueAccent),
+                  buildButton("6", Colors.blueAccent),
+                  buildButton("*", Colors.orangeAccent),
                 ],
               ),
               Row(
                 children: <Widget>[
-                  buildButton("1"),
-                  buildButton("2"),
-                  buildButton("3"),
-                  buildButton("-"),
+                  buildButton("1", Colors.blueAccent),
+                  buildButton("2", Colors.blueAccent),
+                  buildButton("3", Colors.blueAccent),
+                  buildButton("-", Colors.orangeAccent),
                 ],
               ),
               Row(
                 children: <Widget>[
-                  buildButton("."),
-                  buildButton("0"),
-                  buildButton("00"),
-                  buildButton("+"),
+                  buildButton(".", Colors.blueAccent),
+                  buildButton("0", Colors.blueAccent),
+                  buildButton("00", Colors.blueAccent),
+                  buildButton("+", Colors.orangeAccent),
                 ],
               ),
               Row(
                 children: <Widget>[
-                  buildButton("CLEAR"),
-                  buildButton("="),
+                  buildButton("CLEAR", Colors.redAccent),
+                  buildButton("=", Colors.greenAccent),
                 ],
               ),
             ],
